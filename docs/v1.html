@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>KSchema API Generator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .hero-command {
+            margin-top: 40px;
+            background: #111827;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            display: inline-block;
+            font-family: monospace;
+            color: #22c55e;
+            font-size: 1rem;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #38bdf8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #22c55e;
+        }
+
+        .code {
+            background: #111827;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-x: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #22c55e;
+        }
+
+        .flow {
+            text-align: center;
+            font-family: monospace;
+            color: #facc15;
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #94a3b8;
+            border-top: 1px solid #1e293b;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 28px;
+            background: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+
+            <h1>KSchema API Generator</h1>
+
+            <p>
+                Generate Express.js API boilerplate instantly using reusable CLI actions,
+                dynamic command loading, and JSON-driven architecture.
+            </p>
+
+            <div class="hero-command">
+                npx @keshavsoft/kschema-api-gen ShowAll
+            </div>
+
+            <br />
+
+            <a href="#getting-started" class="btn">
+                Get Started
+            </a>
+
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+
+            <h2>Features</h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>⚡ Fast API Generation</h3>
+                    <p>
+                        Create folders, controllers, routes, and boilerplate instantly.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🧠 JSON Driven</h3>
+                    <p>
+                        Single source of truth using actions.json and dynamic imports.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🚀 Scalable Architecture</h3>
+                    <p>
+                        Add new actions without modifying core resolver logic.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>📦 Dynamic Loading</h3>
+                    <p>
+                        Commands are loaded dynamically with zero hardcoded maps.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="getting-started">
+        <div class="container">
+
+            <h2>Quick Start</h2>
+
+            <div class="code">
+                npm install -g @keshavsoft/kschema-api-gen
+
+                npx @keshavsoft/kschema-api-gen ShowAll
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <h2>Architecture Flow</h2>
+
+            <div class="flow">
+                CLI
+                ↓
+                parseInput.js
+                ↓
+                resolveCommand.js
+                ↓
+                loadCommand.js
+                ↓
+                actions.json
+                ↓
+                dynamic import()
+                ↓
+                tasks/actions/
+                ↓
+                template generation
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <h2>Example actions.json</h2>
+
+            <div class="code">
+                [
+                {
+                "cmd": "showAll",
+                "file": "showAll",
+                "exportFile": "ShowAll",
+                "group": "GetMethods",
+                "description": "Generate ShowAll GET action"
+                }
+                ]
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <h2>Supported Commands</h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>ShowAll</h3>
+                    <p>Generate GET all records action.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Insert</h3>
+                    <p>Generate POST insert action.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Distinct</h3>
+                    <p>Generate distinct records action.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <h2>Why v13 Matters</h2>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>Before v13</h3>
+
+                    <p>
+                        Manual imports<br />
+                        Duplicate command maps<br />
+                        Multiple edit points<br />
+                        Hardcoded exports
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>After v13</h3>
+
+                    <p>
+                        Dynamic imports<br />
+                        Single source of truth<br />
+                        Easier scaling<br />
+                        Cleaner architecture
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+
+            <p>
+                Built with ❤️ by KeshavSoft
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

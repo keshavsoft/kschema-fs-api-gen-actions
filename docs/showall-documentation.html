@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShowAll - Developer Documentation</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f6f9;
+            margin:0;
+            padding:0;
+            line-height:1.7;
+            color:#222;
+        }
+
+        .container{
+            width:90%;
+            max-width:1100px;
+            margin:auto;
+            padding:30px 0;
+        }
+
+        h1,h2,h3{
+            color:#0f172a;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#555;
+            margin-bottom:40px;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            margin-bottom:25px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        code{
+            background:#eef2ff;
+            padding:2px 6px;
+            border-radius:4px;
+            color:#1e40af;
+        }
+
+        pre{
+            background:#0f172a;
+            color:#f8fafc;
+            padding:15px;
+            border-radius:8px;
+            overflow-x:auto;
+        }
+
+        ul{
+            padding-left:20px;
+        }
+
+        .flow{
+            background:#f8fafc;
+            border-left:5px solid #2563eb;
+            padding:15px;
+            margin-top:15px;
+        }
+
+        .step{
+            margin-bottom:20px;
+        }
+
+        .highlight{
+            background:#dbeafe;
+            padding:15px;
+            border-radius:8px;
+            margin-top:15px;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:40px;
+            color:#555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>ShowAll Action Documentation</h1>
+
+        <p class="subtitle">
+            Understanding how <code>ShowAll</code> works internally in
+            <code>@keshavsoft/kschema-api-gen-actions</code>
+        </p>
+
+        <!-- Introduction -->
+
+        <div class="card">
+
+            <h2>1. Introduction</h2>
+
+            <p>
+                <code>ShowAll</code> is a CLI-generated Express.js GET endpoint.
+                It automatically creates files, updates routes, and generates
+                boilerplate code for fetching all records from a table.
+            </p>
+
+            <p>
+                Instead of manually writing controller, service, and route code,
+                this npm package generates everything automatically using a
+                modular and configuration-driven architecture.
+            </p>
+
+        </div>
+
+        <!-- Usage -->
+
+        <div class="card">
+
+            <h2>2. Command Usage</h2>
+
+            <pre>
+npx @keshavsoft/kschema-api-gen-actions ShowAll
+            </pre>
+
+            <p>
+                This command generates the <code>ShowAll</code> action inside the
+                current endpoint folder.
+            </p>
+
+        </div>
+
+        <!-- Execution Flow -->
+
+        <div class="card">
+
+            <h2>3. High Level Execution Flow</h2>
+
+            <div class="flow">
+                CLI Command
+                ↓<br><br>
+
+                cli.js
+                ↓<br><br>
+
+                loadRunner.js
+                ↓<br><br>
+
+                start.js
+                ↓<br><br>
+
+                resolveCommand.js
+                ↓<br><br>
+
+                actions.json
+                ↓<br><br>
+
+                ShowAll Action
+                ↓<br><br>
+
+                steps/
+                ↓<br><br>
+
+                template/
+                ↓<br><br>
+
+                Generated API Ready
+            </div>
+
+        </div>
+
+        <!-- How it Works -->
+
+        <div class="card">
+
+            <h2>4. How ShowAll Works</h2>
+
+            <div class="step">
+                <h3>Step 1 - CLI Starts</h3>
+
+                <p>
+                    The command is executed through <code>cli.js</code>.
+                    It loads the latest runtime version dynamically.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>Step 2 - Command Resolution</h3>
+
+                <p>
+                    <code>actions.json</code> acts as a registry.
+                    It maps the command name <code>ShowAll</code> to the
+                    corresponding action file.
+                </p>
+
+                <pre>
+{
+   "cmd": "ShowAll",
+   "file": "showAll"
+}
+                </pre>
+            </div>
+
+            <div class="step">
+                <h3>Step 3 - Template Generation</h3>
+
+                <p>
+                    The generator locates the template folder and copies the
+                    required files into a new <code>ShowAll</code> folder.
+                </p>
+
+                <pre>
+ShowAll/
+ ├── controller.js
+ ├── service.js
+ ├── errors.js
+ └── rest.http
+                </pre>
+            </div>
+
+            <div class="step">
+                <h3>Step 4 - Route Injection</h3>
+
+                <p>
+                    The package automatically updates
+                    <code>end-points.js</code>.
+                </p>
+
+                <p>It injects:</p>
+
+                <pre>
+import { getFunc } from "./ShowAll/controller.js";
+
+router.get('/ShowAll', (req, res) =>
+    getFunc({
+        res,
+        inTableName : tableName
+    })
+);
+                </pre>
+
+            </div>
+
+            <div class="step">
+                <h3>Step 5 - API Ready</h3>
+
+                <p>
+                    After generation, the endpoint becomes immediately usable.
+                </p>
+
+                <pre>
+GET /ShowAll
+                </pre>
+
+            </div>
+
+        </div>
+
+        <!-- Generated Files -->
+
+        <div class="card">
+
+            <h2>5. Generated Files Explanation</h2>
+
+            <h3>controller.js</h3>
+
+            <p>
+                Handles HTTP request and response.
+                Calls the service layer and manages error handling.
+            </p>
+
+            <h3>service.js</h3>
+
+            <p>
+                Contains business/data logic.
+                Fetches all records using:
+            </p>
+
+            <pre>
+kschema.table(tableName).query.findAll()
+            </pre>
+
+            <h3>errors.js</h3>
+
+            <p>
+                Defines reusable custom error classes like:
+            </p>
+
+            <ul>
+                <li>ConflictError</li>
+                <li>StorageError</li>
+            </ul>
+
+            <h3>rest.http</h3>
+
+            <p>
+                Auto-generated API testing file for VS Code REST Client.
+            </p>
+
+        </div>
+
+        <!-- Internal Architecture -->
+
+        <div class="card">
+
+            <h2>6. Internal Architecture</h2>
+
+            <ul>
+                <li><strong>Config Driven</strong> - commands are registered in JSON</li>
+                <li><strong>Dynamic Imports</strong> - actions load only when needed</li>
+                <li><strong>Version Isolation</strong> - runtimes like v16, v17, v18 remain independent</li>
+                <li><strong>Template Based</strong> - reusable templates generate code</li>
+                <li><strong>Source Transformation</strong> - routes and imports update automatically</li>
+            </ul>
+
+        </div>
+
+        <!-- Why this Architecture -->
+
+        <div class="card">
+
+            <h2>7. Why This Architecture?</h2>
+
+            <div class="highlight">
+
+                <p>
+                    This architecture helps developers:
+                </p>
+
+                <ul>
+                    <li>Generate APIs quickly</li>
+                    <li>Maintain clean project structure</li>
+                    <li>Reduce boilerplate code</li>
+                    <li>Scale endpoints easily</li>
+                    <li>Keep controller/service separation clean</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Conclusion -->
+
+        <div class="card">
+
+            <h2>8. Conclusion</h2>
+
+            <p>
+                <code>ShowAll</code> is not just a CRUD generator.
+                It demonstrates a modular CLI architecture using:
+            </p>
+
+            <ul>
+                <li>Dynamic runtime loading</li>
+                <li>Configuration-driven execution</li>
+                <li>Template-based scaffolding</li>
+                <li>Automatic source code transformation</li>
+                <li>Layered backend generation</li>
+            </ul>
+
+            <p>
+                The package is designed to help developers build scalable
+                Express.js APIs with minimal manual setup.
+            </p>
+
+        </div>
+
+        <div class="footer">
+            Documentation for @keshavsoft/kschema-api-gen-actions - ShowAll
+        </div>
+
+    </div>
+
+</body>
+</html>

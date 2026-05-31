@@ -1,0 +1,37 @@
+{
+  "name": "kschema-fs-api-gen-actions",
+  "version": "1.19.4",
+  "description": "CLI to scaffold projects using templates",
+  "keywords": [
+    "cli",
+    "scaffold",
+    "templates",
+    "node",
+    "project-generator"
+  ],
+  "dependencies": {
+    "@keshavsoft/kschema": "^1.17.8",
+    "@keshavsoft/kschema-api-check": "^1.12.3"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "bin": {
+    "kschema-api-gen-actions": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://cli.keshavsoft.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keshavsoft/kschema-fs-api-gen-actions"
+  },
+  "bugs": {
+    "url": "https://github.com/keshavsoft/kschema-fs-api-gen-actions/issues"
+  }
+}

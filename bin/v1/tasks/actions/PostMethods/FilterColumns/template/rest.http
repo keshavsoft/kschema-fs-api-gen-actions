@@ -1,0 +1,4 @@
+POST http://localhost:3000/Api/V1/journals/FilterColumns
+Content-Type: application/json
+
+{ "AccountName": "VEETI KRISHNA" }
