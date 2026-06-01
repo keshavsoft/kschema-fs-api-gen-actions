@@ -1,6 +1,6 @@
 import fs from "fs";
 
-export default function resolveFolderName({ name, inDefaultFolderName = "Insert" }) {
+export default function resolveFolderName({ name, inDefaultFolderName = "Alter" }) {
     const defaultFolderName = inDefaultFolderName;
 
     // case 1: force new → timestamp

@@ -1,11 +1,11 @@
 import fs from "fs";
 
-export default function resolveFolderName({ name }) {
-    const defaultFolerName = "ShowAll";
+export default function resolveFolderName({ name, inDefaultFolderName = "ShowAll" }) {
+    const defaultFolderName = inDefaultFolderName;
 
     // case 1: force new → timestamp
     if (name === null) {
-        name = defaultFolerName;
+        name = defaultFolderName;
     };
 
     // case 2: user provided → strict
