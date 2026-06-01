@@ -40,15 +40,14 @@ const distinct = async (...args) => {
     });
 };
 
-const alter = async (args) => {
+const alter = async ({ toPath }) => {
     const commandToSend = "Alter";
 
     const commandFunction = await load(commandToSend);
     // console.log("  ...args :", args);
     await commandFunction({
-        ...args,
-        cmd: commandToSend,
-        toPath: process.cwd()
+        toPath,
+        cmd: commandToSend
     });
 };
 
