@@ -1,0 +1,23 @@
+[
+    {
+        "cmd": "ShowAll",
+        "file": "showAll",
+        "exportFile": "ShowAll",
+        "group": "GetMethods",
+        "description": "Generate ShowAll GET action"
+    },
+    {
+        "cmd": "Insert",
+        "file": "insert",
+        "exportFile": "Insert",
+        "group": "PostMethods",
+        "description": "Generate Insert POST action"
+    },
+    {
+        "cmd": "Distinct",
+        "file": "distinct",
+        "exportFile": "Distinct",
+        "group": "GetMethods",
+        "description": "Generate Distinct GET action"
+    }
+]
