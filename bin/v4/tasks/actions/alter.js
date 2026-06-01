@@ -12,9 +12,12 @@ import createHttpFile from "./PostMethods/Alter/steps/createHttpFile.js";
 import { announce } from "./PostMethods/Alter/steps/announce.js";
 
 import resolveFolderName from "./PostMethods/Alter/steps/resolveFolderName.js";
+import actions from "../../config/actions.json" with { type: "json" };
 
 const startFunc = async ({ cmd = "", toPath, isAnnounce = true,
     checkBeforeCreate = true, showLog = false }) => {
+
+    const matched = actions.find(x => x.cmd === cmd);
 
     // console.log("-------- : ", showLog);
 
@@ -44,7 +47,8 @@ const startFunc = async ({ cmd = "", toPath, isAnnounce = true,
     if (createFolderResponse.KTF) {
         const fromEndPointsJs = await fixEndpointsJs({
             endPointsJsPath: localToPath,
-            actionName: resolvedFolderName
+            actionName: resolvedFolderName,
+            inCheckLines: matched.endPointsJs
         });
 
         if (showLog) console.log("fromEndPointsJs : ", fromEndPointsJs);

@@ -1,6 +1,6 @@
 {
   "name": "kschema-fs-api-gen-actions",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "CLI to scaffold projects using templates",
   "keywords": [
     "cli",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@keshavsoft/kschema": "^1.17.8",
     "@keshavsoft/kschema-api-check": "^1.12.3",
-    "express-fix-endpoints-js": "^1.5.2"
+    "express-fix-endpoints-js": "^1.8.4"
   },
   "type": "module",
   "exports": {
