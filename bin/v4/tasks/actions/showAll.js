@@ -1,5 +1,7 @@
 import path from "path";
-import endPointsJs from "@keshavsoft/kschema-api-check";
+
+// import endPointsJs from "@keshavsoft/kschema-api-check";
+import fixEndpointsJs from "express-fix-endpoints-js";
 
 import { locateSource } from "./GetMethods/ShowAll/steps/locateSource.js";
 import { locateDestination } from "./GetMethods/ShowAll/steps/locateDestination.js";
@@ -12,6 +14,9 @@ import { announce } from "./GetMethods/ShowAll/steps/announce.js";
 import resolveFolderName from "./GetMethods/ShowAll/steps/resolveFolderName.js";
 
 export default async ({ cmd = "", toPath, isAnnounce = true, checkBeforeCreate = true }) => {
+
+    const matched = actions.find(x => x.cmd === cmd);
+
     const localToPath = toPath;
 
     const resolvedFolderName = resolveFolderName({
@@ -36,9 +41,15 @@ export default async ({ cmd = "", toPath, isAnnounce = true, checkBeforeCreate =
     });
 
     if (createFolderResponse.KTF) {
-        await endPointsJs({
-            toPath: localToPath,
-            action: resolvedFolderName
+        // await endPointsJs({
+        //     toPath: localToPath,
+        //     action: resolvedFolderName
+        // });
+
+        const fromEndPointsJs = await fixEndpointsJs({
+            endPointsJsPath: localToPath,
+            actionName: resolvedFolderName,
+            inCheckLines: matched.endPointsJs
         });
 
         createHttpFile({

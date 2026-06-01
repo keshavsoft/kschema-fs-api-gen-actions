@@ -7,10 +7,13 @@ const load = async (cmd) => {
 };
 
 const showAll = async (...args) => {
-    const commandFunction = await load("ShowAll");
+    const commandToSend = "ShowAll";
 
+    const commandFunction = await load(commandToSend);
+    // console.log("  ...args :", args);
     await commandFunction({
-        cmd: "ShowAll",
+        ...args,
+        cmd: commandToSend,
         toPath: process.cwd()
     });
 };

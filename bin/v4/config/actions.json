@@ -5,9 +5,27 @@
         "exportFile": "ShowAll",
         "group": "GetMethods",
         "description": "Generate ShowAll GET action",
-        "endPointsJs": {
+        "endPointsJs1": {
             "importLine": "import { getFunc } from './ShowAll/controller.js';",
             "usageLine": "router.get('/ShowAll', (req, res) => getFunc({ res, inTableName : tableName}));"
+        },
+        "endPointsJs": {
+            "importLines": {
+                "toInsertLine": "import funcFrom${endpoint} from './${endpoint}/controller.js';",
+                "duplicationCheck": "from './${endpoint}/controller.js'",
+                "insertAfter": [
+                    "import funcFrom",
+                    "import express"
+                ]
+            },
+            "useLines": {
+                "toInsertLine": "router.get('/${endpoint}', (req, res) => funcFrom${endpoint}({ res, inTablePath: tablePath }));",
+                "duplicationCheck": "router.use('/${endpoint}'",
+                "insertAfter": [
+                    "router.",
+                    "const router = "
+                ]
+            }
         }
     },
     {
