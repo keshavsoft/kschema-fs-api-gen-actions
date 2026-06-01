@@ -43,8 +43,8 @@ const startFunc = async ({ cmd = "", toPath, isAnnounce = true,
 
     if (createFolderResponse.KTF) {
         const fromEndPointsJs = await fixEndpointsJs({
-            toPath: localToPath,
-            endpoint: resolvedFolderName
+            endPointsJsPath: localToPath,
+            actionName: resolvedFolderName
         });
 
         if (showLog) console.log("fromEndPointsJs : ", fromEndPointsJs);
