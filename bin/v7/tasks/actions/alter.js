@@ -1,6 +1,7 @@
 import path from "path";
 
-import fixEndpointsJs from "express-fix-endpoints-js";
+// import fixEndpointsJs from "express-fix-endpoints-js";
+import fixEndpointsJs from "express-fix-any-js";
 
 import { locateSource } from "./PostMethods/Alter/steps/locateSource.js";
 import { locateDestination } from "./PostMethods/Alter/steps/locateDestination.js";
@@ -45,9 +46,14 @@ const startFunc = async ({ cmd = "", toPath, isAnnounce = true,
     });
 
     if (createFolderResponse.KTF) {
+        // const fromEndPointsJs = await fixEndpointsJs({
+        //     endPointsJsPath: localToPath,
+        //     actionName: resolvedFolderName,
+        //     inCheckLines: matched.endPointsJs
+        // });
+
         const fromEndPointsJs = await fixEndpointsJs({
-            endPointsJsPath: localToPath,
-            actionName: resolvedFolderName,
+            jsFilePath: path.join(localToPath, "end-points.js"),
             inCheckLines: matched.endPointsJs
         });
 

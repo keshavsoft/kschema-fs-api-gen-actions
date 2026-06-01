@@ -67,7 +67,7 @@
         "exportFile": "Alter",
         "group": "PostMethods",
         "description": "Generate Alter POST action",
-        "endPointsJs": {
+        "endPointsJs1": {
             "importLines": {
                 "toInsertLine": "import funcFrom${endpoint} from './${endpoint}/controller.js';",
                 "duplicationCheck": "from './${endpoint}/controller.js'",
@@ -79,6 +79,24 @@
             "useLines": {
                 "toInsertLine": "router.post('/${endpoint}', express.json(), (req, res) => funcFrom${endpoint}({ req, res, inTablePath: tablePath }));",
                 "duplicationCheck": "router.use('/${endpoint}'",
+                "insertAfter": [
+                    "router.",
+                    "const router = "
+                ]
+            }
+        },
+        "endPointsJs": {
+            "importLines": {
+                "toInsertLine": "import funcFromAlter from './Alter/controller.js';",
+                "duplicationCheck": "from './Alter/controller.js'",
+                "insertAfter": [
+                    "import funcFrom",
+                    "import express"
+                ]
+            },
+            "useLines": {
+                "toInsertLine": "router.post('/Alter', express.json(), (req, res) => funcFromAlter({ req, res, inTablePath: tablePath }));",
+                "duplicationCheck": "router.use('/Alter'",
                 "insertAfter": [
                     "router.",
                     "const router = "

@@ -47,7 +47,7 @@ export default async ({ cmd = "", toPath, isAnnounce = true, checkBeforeCreate =
         //     toPath: localToPath,
         //     action: resolvedFolderName
         // });
-        console.log("localToPath : ", localToPath);
+        // console.log("localToPath : ", localToPath);
 
         const fromEndPointsJs = await fixEndpointsJs({
             jsFilePath: path.join(localToPath, "end-points.js"),
