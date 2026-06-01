@@ -1,5 +1,6 @@
 import path from "path";
-import endPointsJs from "@keshavsoft/kschema-api-check";
+
+import fixEndpointsJs from "express-fix-endpoints-js";
 
 import { locateSource } from "./PostMethods/Alter/steps/locateSource.js";
 import { locateDestination } from "./PostMethods/Alter/steps/locateDestination.js";
@@ -41,9 +42,9 @@ const startFunc = async ({ cmd = "", toPath, isAnnounce = true,
     });
 
     if (createFolderResponse.KTF) {
-        const fromEndPointsJs = await endPointsJs({
+        const fromEndPointsJs = await fixEndpointsJs({
             toPath: localToPath,
-            action: resolvedFolderName
+            endpoint: resolvedFolderName
         });
 
         if (showLog) console.log("fromEndPointsJs : ", fromEndPointsJs);
