@@ -1,0 +1,20 @@
+[
+    {
+        "cmd": "showAll",
+        "file": "showAll",
+        "exportFile": "ShowAll",
+        "group": "GetMethods"
+    },
+    {
+        "cmd": "insert",
+        "file": "insert",
+        "exportFile": "Insert",
+        "group": "PostMethods"
+    },
+    {
+        "cmd": "distinct",
+        "file": "distinct",
+        "exportFile": "Distinct",
+        "group": "GetMethods"
+    }
+]

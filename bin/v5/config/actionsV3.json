@@ -1,0 +1,35 @@
+[
+    {
+        "cmd": "ShowAll",
+        "file": "showAll",
+        "exportFile": "ShowAll",
+        "group": "GetMethods",
+        "description": "Generate ShowAll GET action",
+        "endPointsJs": {
+            "importLine": "import { getFunc } from './ShowAll/controller.js';",
+            "usageLine": "router.get('/ShowAll', (req, res) => getFunc({ res, inTableName : tableName}));"
+        }
+    },
+    {
+        "cmd": "Insert",
+        "file": "insert",
+        "exportFile": "Insert",
+        "group": "PostMethods",
+        "description": "Generate Insert POST action",
+        "endPointsJs": {
+            "importLine": "import { postFunc } from './Insert/controller.js';",
+            "usageLine": "router.post('/Insert', express.json(), (req, res) => postFunc({ req, res, inTableName : tableName}));"
+        }
+    },
+    {
+        "cmd": "Distinct",
+        "file": "distinct",
+        "exportFile": "Distinct",
+        "group": "GetMethods",
+        "description": "Generate Distinct GET action",
+        "endPointsJs": {
+            "importLine": "import distinctFunc from './Distinct/controller.js';",
+            "usageLine": "router.get('/Distinct/:columnName', (req, res) => distinctFunc({ req, res, inTableName : tableName}));"
+        }
+    }
+]
