@@ -1,0 +1,89 @@
+[
+    {
+        "cmd": "ShowAll",
+        "file": "showAll",
+        "exportFile": "ShowAll",
+        "group": "GetMethods",
+        "description": "Generate ShowAll GET action",
+        "endPointsJs1": {
+            "importLine": "import { getFunc } from './ShowAll/controller.js';",
+            "usageLine": "router.get('/ShowAll', (req, res) => getFunc({ res, inTableName : tableName}));"
+        },
+        "endPointsJs": {
+            "importLines": {
+                "toInsertLine": "import funcFromShowAll from './ShowAll/controller.js';",
+                "duplicationCheck": "from './ShowAll/controller.js'",
+                "insertAfter": [
+                    "import funcFrom",
+                    "import express"
+                ]
+            },
+            "useLines": {
+                "toInsertLine": "router.get('/ShowAll', (req, res) => funcFromShowAll({ res, inTablePath: tablePath }));",
+                "duplicationCheck": "router.use('/ShowAll'",
+                "insertAfter": [
+                    "router.",
+                    "const router = "
+                ]
+            }
+        }
+    },
+    {
+        "cmd": "Insert",
+        "file": "insert",
+        "exportFile": "Insert",
+        "group": "PostMethods",
+        "description": "Generate Insert POST action",
+        "endPointsJs": {
+            "importLine": "import { postFunc } from './Insert/controller.js';",
+            "usageLine": "router.post('/Insert', express.json(), (req, res) => postFunc({ req, res, inTableName : tableName}));"
+        }
+    },
+    {
+        "cmd": "Distinct",
+        "file": "distinct",
+        "exportFile": "Distinct",
+        "group": "GetMethods",
+        "description": "Generate Distinct GET action",
+        "endPointsJs": {
+            "importLine": "import distinctFunc from './Distinct/controller.js';",
+            "usageLine": "router.get('/Distinct/:columnName', (req, res) => distinctFunc({ req, res, inTableName : tableName}));"
+        }
+    },
+    {
+        "cmd": "FilterColumns",
+        "file": "filterColumns",
+        "exportFile": "FilterColumns",
+        "group": "PostMethods",
+        "description": "Generate FilterColumns POST action",
+        "endPointsJs": {
+            "importLine": "import filterColumnsFunc from './FilterColumns/controller.js';",
+            "usageLine": "router.post('/FilterColumns', express.json(), (req, res) => filterColumnsFunc({ req, res, inTableName : tableName}));"
+        }
+    },
+    {
+        "cmd": "Alter",
+        "file": "alter",
+        "exportFile": "Alter",
+        "group": "PostMethods",
+        "description": "Generate Alter POST action",
+        "endPointsJs": {
+            "importLines": {
+                "toInsertLine": "import funcFrom${endpoint} from './${endpoint}/controller.js';",
+                "duplicationCheck": "from './${endpoint}/controller.js'",
+                "insertAfter": [
+                    "import funcFrom",
+                    "import express"
+                ]
+            },
+            "useLines": {
+                "toInsertLine": "router.post('/${endpoint}', express.json(), (req, res) => funcFrom${endpoint}({ req, res, inTablePath: tablePath }));",
+                "duplicationCheck": "router.use('/${endpoint}'",
+                "insertAfter": [
+                    "router.",
+                    "const router = "
+                ]
+            }
+        }
+    }
+]
