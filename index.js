@@ -6,15 +6,14 @@ const load = async (cmd) => {
     return module.default(cmd); // Returns a function
 };
 
-const showAll = async (...args) => {
+const showAll = async ({ toPath }) => {
     const commandToSend = "ShowAll";
 
     const commandFunction = await load(commandToSend);
     // console.log("  ...args :", args);
     await commandFunction({
-        ...args,
-        cmd: commandToSend,
-        toPath: process.cwd()
+        toPath,
+        cmd: commandToSend
     });
 };
 
