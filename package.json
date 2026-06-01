@@ -1,6 +1,6 @@
 {
   "name": "kschema-fs-api-gen-actions",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "CLI to scaffold projects using templates",
   "keywords": [
     "cli",

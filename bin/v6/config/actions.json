@@ -19,7 +19,7 @@
                 ]
             },
             "useLines": {
-                "toInsertLine": "router.get('ShowAll', (req, res) => funcFromShowAll({ res, inTablePath: tablePath }));",
+                "toInsertLine": "router.get('/ShowAll', (req, res) => funcFromShowAll({ res, inTablePath: tablePath }));",
                 "duplicationCheck": "router.use('/ShowAll'",
                 "insertAfter": [
                     "router.",
