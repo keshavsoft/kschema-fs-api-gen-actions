@@ -12,7 +12,7 @@
   "dependencies": {
     "@keshavsoft/kschema": "^1.17.8",
     "@keshavsoft/kschema-api-check": "^1.12.3",
-    "express-fix-endpoints-js": "^1.9.5"
+    "express-fix-endpoints-js": "^1.9.4"
   },
   "type": "module",
   "exports": {
